@@ -7,6 +7,6 @@ Mongoid Many to Many Issue
 
 
 <% if @shared_calendar %>
-  <p><% User.first.shared_calendar_ids %></p>
-  </p><% @shared_calendar.user_ids %></p>
+  <p>shared_calendar_ids of the user: <b><%= User.first.shared_calendar_ids %></b></p>
+  </p>user_ids of the shared calendar: <b><%= @shared_calendar.user_ids %></b></p>
 <% end %>

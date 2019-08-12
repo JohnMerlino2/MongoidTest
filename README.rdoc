@@ -1,28 +1,17 @@
-== README
+1. Run bundle
+2. load page and add a name to calendar and click submit
+3. Then check your MongoDB database named 'mongoid_test'
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> use mongoid_test
+switched to db mongoid_test
+> show collections
+calendars
+users
+> db.users.find()
+{ "_id" : ObjectId("5d50e2783ed14966a0000000"), "updated_at" : ISODate("2019-08-12T03:54:08.466Z"), "created_at" : ISODate("2019-08-12T03:52:24.036Z") }
+> db.calendars.find()
+{ "_id" : ObjectId("5d50e2e03ed14966a0000002"), "_type" : "SharedCalendar", "name" : "something cool", "user_ids" : [ ObjectId("5d50e2783ed14966a0000000") ], "updated_at" : ISODate("2019-08-12T03:54:08.446Z"), "created_at" : ISODate("2019-08-12T03:54:08.446Z") }
 
-Things you may want to cover:
+The Issue:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+When creating the Shared Calendar, it did not update the shared_calendar_ids field in the user document. In other words, it only saved the many to many relation in one direction, not both directions.
